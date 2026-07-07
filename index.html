@@ -3,1292 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>哀牢山 - 神秘山脉的传说 官方网站</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>系统维护中 - Server Updating</title>
     <style>
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #00b3aa;
+            --bg-color: #050510;
+            --text-color: #e0e0ff;
+            --alert-color: #ff3366;
+            --dim-color: #4a5568;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Roboto', 'Noto Serif SC', 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #0a2a0a 0%, #1a4a1a 100%);
-            color: #e0ffe0;
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-            transition: background 0.5s ease;
-        }
-        
-        /* 神秘森林背景动画效果 */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(50, 200, 50, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(100, 255, 100, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(0, 100, 0, 0.1) 0%, transparent 50%);
-            animation: bgMove 25s ease-in-out infinite alternate;
-            z-index: -1;
-        }
-        
-        @keyframes bgMove {
-            0% {
-                transform: scale(1) rotate(0deg);
-            }
-            100% {
-                transform: scale(1.1) rotate(5deg);
-            }
-        }
-        
-        /* 森林网格背景 */
-        body::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(50, 200, 50, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(50, 200, 50, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            opacity: 0.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        header {
-            text-align: center;
-            padding: 80px 20px 60px;
-            background: rgba(15, 30, 15, 0.7);
-            margin-bottom: 40px;
-            border-radius: 20px;
-            position: relative;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(50, 200, 50, 0.3);
-            backdrop-filter: blur(10px);
+            position: relative;
         }
-        
-        header::before {
-            content: "";
+
+        /* 背景网格动画 - 更缓慢 */
+        .grid-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: gridMove 60s linear infinite;
             z-index: 0;
         }
-        
-        /* 标题边框动画 */
-        header::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            box-shadow: inset 0 0 20px rgba(50, 200, 50, 0.5), 0 0 40px rgba(50, 200, 50, 0.3);
-            animation: borderGlow 3s ease-in-out infinite alternate;
-            z-index: -1;
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px) translateZ(-200px); }
         }
-        
-        @keyframes borderGlow {
-            0% {
-                box-shadow: inset 0 0 20px rgba(50, 200, 50, 0.5), 0 0 20px rgba(50, 200, 50, 0.3);
-            }
-            100% {
-                box-shadow: inset 0 0 30px rgba(50, 200, 50, 0.8), 0 0 60px rgba(50, 200, 50, 0.5);
-            }
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-            background: linear-gradient(to right, #32cd32, #228b22, #32cd32);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-            letter-spacing: 2px;
-            position: relative;
-            animation: textGlow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes textGlow {
-            0% {
-                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 10px rgba(50, 200, 50, 0.5);
-            }
-            100% {
-                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 20px rgba(50, 200, 50, 0.8), 0 0 30px rgba(50, 200, 50, 0.6);
-            }
-        }
-        
-        .subtitle {
-            font-size: 1.6rem;
-            opacity: 0.95;
-            margin-bottom: 30px;
-            font-weight: 300;
-            position: relative;
-            color: #228b22;
-        }
-        
-        .subtitle::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #32cd32, transparent);
-        }
-        
-        .version-info {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            margin-bottom: 20px;
-            color: #32cd32;
-        }
-        
-        .authors {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        
-        .author-card {
-            background: rgba(50, 200, 50, 0.12);
-            padding: 35px;
-            border-radius: 20px;
-            text-align: center;
-            min-width: 280px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(50, 200, 50, 0.2);
-            position: relative;
-            overflow: hidden;
-            perspective: 1000px;
-        }
-        
-        .author-card::before {
-            content: "";
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #32cd32, #228b22, #006400);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .author-card:hover {
-            transform: translateY(-10px) scale(1.03) rotateX(5deg);
-            background: rgba(50, 200, 50, 0.18);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
-        }
-        
-        .author-card:hover::before {
-            opacity: 1;
-        }
-        
-        .author-name {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: #32cd32;
-            font-weight: 700;
-            position: relative;
-        }
-        
-        .author-name::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: #32cd32;
-            border-radius: 1px;
-        }
-        
-        .author-role {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            opacity: 0.85;
-            font-weight: 400;
-            color: #228b22;
-        }
-        
-        .author-desc {
-            font-size: 1.05rem;
-            opacity: 0.92;
-            line-height: 1.7;
-            font-weight: 300;
-        }
-        
-        .announcement-section {
-            background: rgba(50, 200, 50, 0.12);
-            padding: 50px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(50, 200, 50, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .announcement-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, #32cd32, #228b22, #32cd32);
-            animation: gradientMove 3s linear infinite;
-        }
-        
-        @keyframes gradientMove {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 40px;
-            color: #32cd32;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-weight: 700;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #32cd32, transparent);
-            border-radius: 2px;
-        }
-        
-        .announcement-content {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            text-align: left;
-            background: rgba(0, 30, 0, 0.3);
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #32cd32;
-        }
-        
-        .announcement-content h3 {
-            color: #32cd32;
-            margin: 20px 0 15px 0;
-            font-size: 1.6rem;
-        }
-        
-        .announcement-content p {
-            margin-bottom: 15px;
-        }
-        
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .action-button {
-            display: inline-block;
-            width: 200px;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #32cd32, #228b22);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(50, 200, 50, 0.4);
-            text-align: center;
-            transform-style: preserve-3d;
-            text-decoration: none;
-        }
-        
-        .action-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(50, 200, 50, 0.6);
-        }
-        
-        .action-button::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 20px;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(25deg);
-            transition: all 0.6s;
-        }
-        
-        .action-button:hover::before {
-            left: 120%;
-        }
-        
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-        
-        .book-card {
-            background: rgba(50, 200, 50, 0.15);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(50, 200, 50, 0.15);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transform-style: preserve-3d;
-        }
-        
-        .book-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, #32cd32, #228b22);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-            z-index: 1;
-        }
-        
-        .book-card:hover {
-            transform: translateY(-12px) rotateY(5deg);
-            background: rgba(50, 200, 50, 0.22);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-        }
-        
-        .book-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .book-title {
-            font-size: 1.7rem;
-            margin-bottom: 12px;
-            color: #32cd32;
-            font-weight: 700;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .book-author {
-            font-size: 1.2rem;
-            margin-bottom: 18px;
-            opacity: 0.92;
-            color: #e0ffe0;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .book-desc {
-            font-size: 1.05rem;
-            opacity: 0.88;
-            line-height: 1.7;
-            font-weight: 300;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .contact {
-            text-align: center;
-            padding: 50px 20px;
-            background: rgba(15, 30, 15, 0.7);
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(50, 200, 50, 0.2);
-            backdrop-filter: blur(10px);
-        }
-        
-        .contact::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(50, 200, 50, 0.1), transparent);
-            transform: translateX(-100%);
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            100% {
-                transform: translateX(100%);
-            }
-        }
-        
-        .contact-info {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 40px;
-            opacity: 0.8;
-            font-size: 1.1rem;
-            border-top: 1px solid rgba(50, 200, 50, 0.1);
-            position: relative;
-        }
-        
-        .version-footer {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 0.9rem;
-            color: #32cd32;
-        }
-        
-        /* 系统加载界面样式 */
-        .loading-screen {
+
+        /* 扫描线效果 */
+        .scanline {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #0a120a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            font-family: 'Courier New', monospace;
-            color: #32cd32;
-        }
-
-        /* 背景扫描线效果 */
-        .loading-screen::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0%,
-                rgba(50, 200, 50, 0.05) 1px,
-                transparent 2px
-            );
-            animation: scan 8s linear infinite;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.5) 51%);
+            background-size: 100% 4px;
             pointer-events: none;
-            z-index: 1;
+            z-index: 10;
+            opacity: 0.2;
         }
 
-        @keyframes scan {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 0 100vh;
-            }
-        }
-
-        .loading-container {
-            text-align: center;
+        .container {
+            position: relative;
             z-index: 2;
-            position: relative;
+            text-align: center;
+            width: 90%;
+            max-width: 650px;
+            background: rgba(10, 15, 30, 0.9);
+            border: 1px solid var(--primary-color);
+            padding: 50px 40px;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.1);
+            backdrop-filter: blur(8px);
         }
 
-        .loading-logo {
+        /* 故障文字效果 */
+        .glitch-title {
             font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 0 10px #32cd32, 0 0 20px #32cd32;
-            animation: glow 1.5s ease-in-out infinite alternate;
+            position: relative;
+            text-shadow: 2px 2px var(--alert-color);
+            margin-bottom: 30px;
+            letter-spacing: 6px;
+            color: var(--primary-color);
         }
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px #32cd32, 0 0 10px #32cd32;
-            }
-            to {
-                text-shadow: 0 0 15px #32cd32, 0 0 30px #32cd32;
-            }
+        .status-text {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
-        .loading-status {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            opacity: 0.9;
+        .timer-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 10px;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
         }
 
-        .progress-container {
-            width: 80%;
-            max-width: 500px;
-            height: 10px;
-            background: rgba(50, 200, 50, 0.1);
-            border-radius: 5px;
-            margin: 0 auto 30px;
-            overflow: hidden;
+        /* 进度条容器 */
+        .progress-wrapper {
+            margin-bottom: 40px;
             position: relative;
         }
 
-        .progress-bar {
+        .progress-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: rgba(0, 255, 204, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #32cd32, #228b22);
-            border-radius: 5px;
-            transition: width 0.4s ease;
+            background: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color);
+            transition: width 1s linear; /* 平滑过渡 */
             position: relative;
-        }
-
-        .progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
-            animation: shine 1.5s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
         }
 
         .percentage {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--dim-color);
         }
 
-        .terminal {
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            text-align: left;
-            width: 80%;
-            max-width: 600px;
-            height: 150px;
-            background: rgba(0, 20, 0, 0.7);
-            border: 1px solid #32cd32;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 0 auto;
+        /* 终端日志区域 */
+        .terminal-window {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+            border-left: 3px solid var(--primary-color);
+            padding: 20px;
+            height: 180px;
             overflow-y: auto;
-            opacity: 0.8;
-            box-shadow: 0 0 15px rgba(50, 200, 50, 0.3);
+            text-align: left;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+            font-family: 'Consolas', monospace;
         }
 
-        .terminal-line {
-            margin-bottom: 5px;
+        .log-line {
+            margin-bottom: 8px;
             opacity: 0;
-            animation: fadeIn 0.5s forwards;
+            animation: fadeIn 1s forwards;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 4px;
         }
+
+        .log-line:last-child {
+            border-bottom: none;
+        }
+
+        .log-time {
+            color: var(--dim-color);
+            margin-right: 10px;
+        }
+
+        .log-msg.info { color: #87ceeb; }
+        .log-msg.success { color: var(--primary-color); }
+        .log-msg.warning { color: #ffcc00; }
+        .log-msg.process { color: #aaa; }
 
         @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+            to { opacity: 1; }
         }
 
-        .loading-dots {
-            display: inline-block;
+        .footer {
+            font-size: 0.75rem;
+            opacity: 0.3;
+            margin-top: 30px;
+            letter-spacing: 1px;
         }
 
-        .dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #32cd32;
-            margin: 0 2px;
-            animation: pulse 1.4s infinite ease-in-out both;
-        }
-
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
-
-        @keyframes pulse {
-            0%, 80%, 100% {
-                transform: scale(0.8);
-                opacity: 0.7;
-            }
-            40% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-        }
-        
-        /* 世界观模态框样式 */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10001;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal-content {
-            background: linear-gradient(135deg, #0a2a0a 0%, #1a4a1a 100%);
-            margin: 5% auto;
-            padding: 40px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(50, 200, 50, 0.2);
-            animation: modalAppear 0.5s ease-out;
-        }
-        
-        @keyframes modalAppear {
-            from {
-                opacity: 0;
-                transform: scale(0.8) translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            z-index: 2;
-            transition: color 0.3s;
-        }
-        
-        .close:hover,
-        .close:focus {
-            color: #32cd32;
-        }
-        
-        .worldview-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #32cd32;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-weight: 700;
-        }
-        
-        .worldview-content {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            text-align: left;
-            background: rgba(0, 30, 0, 0.3);
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #32cd32;
-        }
-        
-        .worldview-content h3 {
-            color: #32cd32;
-            margin: 20px 0 15px 0;
-            font-size: 1.6rem;
-        }
-        
-        .worldview-content p {
-            margin-bottom: 15px;
-        }
-        
-        /* 背景颜色更改控件样式 */
-        .color-controls {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(15, 30, 15, 0.8);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            border: 1px solid rgba(50, 200, 50, 0.3);
-            backdrop-filter: blur(10px);
-        }
-        
-        .color-controls h3 {
-            color: #32cd32;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .color-palette {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-        
-        .color-option {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        
-        .color-option:hover {
-            transform: scale(1.2);
-        }
-        
-        .color-option.active {
-            border-color: white;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-        }
-        
-        .custom-color-picker {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .custom-color-picker label {
-            color: #e0ffe0;
-            font-size: 0.9rem;
-        }
-        
-        .custom-color-picker input[type="color"] {
-            width: 40px;
-            height: 40px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .reset-btn {
-            display: block;
-            width: 100%;
-            margin-top: 10px;
-            padding: 8px;
-            background: rgba(50, 200, 50, 0.3);
-            color: #e0ffe0;
-            border: 1px solid rgba(50, 200, 50, 0.5);
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.3s;
-        }
-        
-        .reset-btn:hover {
-            background: rgba(50, 200, 50, 0.5);
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            .subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-            
-            .authors {
-                gap: 30px;
-            }
-            
-            .author-card {
-                min-width: 250px;
-                padding: 25px;
-            }
-            
-            .announcement-section {
-                padding: 30px 20px;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .action-button {
-                width: 80%;
-                max-width: 250px;
-            }
-            
-            .book-card {
-                padding: 25px;
-            }
-            
-            /* 移动端加载界面调整 */
-            .loading-logo {
-                font-size: 1.8rem;
-            }
-            
-            .terminal {
-                width: 95%;
-                max-width: none;
-                height: 120px;
-            }
-            
-            .version-info {
-                font-size: 1rem;
-            }
-            
-            .version-footer {
-                position: static;
-                display: block;
-                margin-top: 10px;
-                font-size: 0.8rem;
-            }
-            
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-                padding: 30px 20px;
-            }
-            
-            .worldview-title {
-                font-size: 2rem;
-            }
-            
-            .worldview-content {
-                font-size: 1rem;
-                padding: 20px;
-            }
-            
-            /* 移动端颜色控制面板调整 */
-            .color-controls {
-                top: 10px;
-                right: 10px;
-                padding: 10px;
-            }
-            
-            .color-option {
-                width: 25px;
-                height: 25px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .authors {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .author-card {
-                min-width: 90%;
-            }
-            
-            .books-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .color-controls {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin: 10px auto;
-                width: 90%;
-            }
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            .glitch-title { font-size: 1.8rem; letter-spacing: 2px; }
+            .container { padding: 30px 20px; width: 95%; }
+            .timer-display { font-size: 1.5rem; }
+            .terminal-window { height: 150px; }
         }
     </style>
 </head>
 <body>
-    <!-- 系统加载界面 -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-container">
-            <div class="loading-logo">哀牢山 SYSTEM v1.0.0</div>
-            <div class="loading-status">正在进入系统<span class="loading-dots">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </span></div>
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-            <div class="percentage" id="percentage">0%</div>
-            <div class="terminal" id="terminal">
-                <div class="terminal-line">> 初始化哀牢山核心系统 v1.0.0...</div>
-            </div>
-        </div>
-    </div>
 
-    <!-- 主要内容区域 -->
-    <div class="container" id="mainContent" style="display: none;">
-        <header>
-            <div class="header-content">
-                <h1>哀牢山 - 神秘山脉的传说</h1>
-                <div class="subtitle">深山迷雾，探寻未知</div>
-                <div class="version-info">版本：v1.0.0</div>
-            </div>
-        </header>
+    <div class="grid-bg"></div>
+    <div class="scanline"></div>
+
+    <div class="container">
+        <h1 class="glitch-title" data-text="SYSTEM MAINTENANCE">SYSTEM MAINTENANCE</h1>
         
-        <div class="announcement-section">
-            <h2 class="section-title">最新公告</h2>
-            <div class="announcement-content">
-                <h3>哀牢山探险队归来公告</h3>
-                <p>历经三个月的深入探索，我们的哀牢山探险队终于平安归来！</p>
-                
-                <p>此次探险，我们深入哀牢山腹地，探访了那些鲜为人知的神秘地带。在海拔2000米以上的原始森林中，我们发现了许多令人惊叹的自然奇观和未解之谜。</p>
-                
-                <p>在探险过程中，队员们克服了重重困难：陡峭的山路、变幻莫测的天气、以及深山中各种未知的危险。但正是这些挑战，让我们的探险队更加坚定了揭开哀牢山神秘面纱的决心。</p>
-                
-                <p>我们记录了大量的珍贵资料，包括罕见的动植物标本、古老的地质构造样本，以及一些疑似古代遗迹的发现。这些发现将为我们进一步了解哀牢山的生态和历史文化提供重要依据。</p>
-                
-                <p>然而，哀牢山仍有许多未解之谜等待我们去解开。在这片神秘的土地上，似乎隐藏着更多不为人知的秘密。我们计划在不久的将来组织更大规模的探险活动，继续深入探索这座神奇的山脉。</p>
-                
-                <p>同时，我们也希望社会各界能够关注哀牢山的生态保护工作。这里的生态环境极其脆弱，需要我们共同守护这片净土。</p>
-                
-                <p><strong>探险队队长留言：</strong>哀牢山是一座充满神秘色彩的山脉，每一次探险都让我们对大自然的力量有了更深的认识。未来，我们将继续致力于揭开哀牢山的神秘面纱，为人类探索未知世界贡献力量。</p>
+        <div class="status-text">
+            服务器正在进行大规模架构重组与数据迁移。<br>
+            此过程需要较长时间，请耐心等待。
+        </div>
+
+        <div class="timer-display" id="timer">72:00:00</div>
+
+        <div class="progress-wrapper">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBar"></div>
             </div>
+            <div class="percentage">COMPLETION: <span id="percentText">0.0000</span>%</div>
         </div>
-        
-        <div class="authors">
-            <div class="author-card">
-                <div class="author-name">云隐</div>
-                <div class="author-role">主笔</div>
-                <div class="author-desc">资深探险家兼作家，专注于神秘地理和未知领域的探索。擅长将真实的探险经历与丰富的想象力结合，创造出引人入胜的冒险故事。文字风格充满神秘感，善于营造紧张刺激的氛围。</div>
-            </div>
-            
-            <div class="author-card">
-                <div class="author-name">雾痕</div>
-                <div class="author-role">副笔</div>
-                <div class="author-desc">历史学者兼小说家，专攻古代文明和民间传说研究。善于挖掘历史背后的故事，将传统文化元素融入现代叙事中。作品常常带有一种深邃的历史厚重感。</div>
-            </div>
+
+        <div class="terminal-window" id="terminal">
+            <!-- 日志将在这里生成 -->
         </div>
-        
-        <!-- 世界观按钮 -->
-        <div class="action-buttons">
-            <a href="#" class="action-button" onclick="openWorldviewModal()">世界观</a>
-        </div>
-        
-        <div class="books-section">
-            <h2 class="section-title">相关作品推荐</h2>
-            <div class="books-grid">
-                <div class="book-card">
-                    <div class="book-title">哀牢山迷踪</div>
-                    <div class="book-author">作者：云隐</div>
-                    <div class="book-desc">一部关于哀牢山深处神秘事件的小说，讲述了探险队在深山中遭遇的一系列超自然现象。通过紧张刺激的情节，展现了大自然的神秘力量。</div>
-                </div>
-                
-                <div class="book-card">
-                    <div class="book-title">云南秘境</div>
-                    <div class="book-author">作者：雾痕</div>
-                    <div class="book-desc">探索云南地区古老传说的作品，将历史与现实交织，讲述了一个关于失落文明的传奇故事。充满了神秘的民族文化和古老的智慧。</div>
-                </div>
-                
-                <div class="book-card">
-                    <div class="book-title">深山寻踪</div>
-                    <div class="book-author">作者：云隐</div>
-                    <div class="book-desc">稍后上线。这部作品将深入探讨哀牢山地区的生态变化与人文历史，结合科学考察与文学想象，呈现一个立体的哀牢山世界。</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="contact">
-            <div class="contact-info">敬请期待更多精彩作品...</div>
-        </div>
-        
-        <footer>
-            <p>&copy; 2026 哀牢山官方网站. 保留所有权利.</p>
-            <div class="version-footer">v1.0.0</div>
-        </footer>
-    </div>
-    
-    <!-- 背景颜色更改控件 -->
-    <div class="color-controls">
-        <h3>更改背景</h3>
-        <div class="color-palette">
-            <div class="color-option" style="background-color: #0a2a0a;" data-color="#0a2a0a"></div>
-            <div class="color-option" style="background-color: #1a4a1a;" data-color="#1a4a1a"></div>
-            <div class="color-option" style="background-color: #003300;" data-color="#003300"></div>
-            <div class="color-option" style="background-color: #006400;" data-color="#006400"></div>
-            <div class="color-option" style="background-color: #228b22;" data-color="#228b22"></div>
-            <div class="color-option" style="background-color: #32cd32;" data-color="#32cd32"></div>
-            <div class="color-option" style="background-color: #3cb371;" data-color="#3cb371"></div>
-            <div class="color-option" style="background-color: #2e8b57;" data-color="#2e8b57"></div>
-        </div>
-        <div class="custom-color-picker">
-            <label for="customColor">自定义:</label>
-            <input type="color" id="customColor" value="#0a2a0a">
-        </div>
-        <button class="reset-btn" id="resetBtn">恢复默认</button>
-    </div>
-    
-    <!-- 世界观模态框 -->
-    <div id="worldviewModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeWorldviewModal()">&times;</span>
-            <h2 class="worldview-title">世界观设定</h2>
-            <div class="worldview-content">
-                <h3>哀牢山 - 神秘山脉的传说</h3>
-                <p>在云南西南部的崇山峻岭中，哀牢山以其神秘莫测的面貌吸引着无数探险者。这里不仅是生物多样性的宝库，更是承载着千年历史文化的圣地。在我们的世界观中，哀牢山不仅是一个地理实体，更是一个充满神秘力量的精神象征。</p>
-                
-                <h3>基本设定</h3>
-                <p>哀牢山是一个融合了自然奇观与超自然力量的神秘世界。在这里，古老的彝族文化与现代科学探索交织，形成了独特的文明形态。山中隐藏着许多未解之谜，包括古老的遗迹、神秘的生物，以及那些只有当地人才知道的传说。</p>
-                
-                <h3>神秘现象与传说</h3>
-                <p><strong>迷雾森林</strong>：在哀牢山深处，存在着一片终年被迷雾笼罩的森林。当地人传说，这里是连接人间与灵界的通道，只有心灵纯净的人才能找到正确的路径穿越其中。</p>
-                
-                <p><strong>时光之谷</strong>：据传，在某个特定的时间点，山谷中会出现一种奇异的现象——时间仿佛静止，过去、现在和未来在此刻交汇。探险者们声称在这里看到了古代哀牢国的幻象。</p>
-                
-                <h3>生物多样性与神秘生物</h3>
-                <p>哀牢山是生物多样性的宝库，拥有众多珍稀动植物。除了已知的物种外，传说中还栖息着一些神秘生物——它们可能是远古遗留下来的生物，或是某种超自然存在的化身。</p>
-                
-                <p>当地的彝族长老世代相传着关于"山神"的故事，据说这些神秘生物守护着哀牢山的生态平衡，惩罚那些破坏自然的人。</p>
-                
-                <p>近年来，随着科学技术的发展，越来越多的未知物种被发现。但与此同时，一些探险者报告了更加离奇的现象——如植物在夜间发出微弱的光芒，动物表现出异常的智慧行为等。</p>
-                
-                <p>在这个世界中，现代科学与古老传说并存。科学家们试图用现代理论解释这些现象，而当地的居民则坚信这是祖先留下的神秘力量在庇护着这片土地。</p>
-                
-                <p>哀牢山不仅是一个地理概念，更是一个精神家园。在这里，人与自然和谐共生，古老的文化传统得以传承，神秘的力量影响着每一个来到这里的人。</p>
-            </div>
+
+        <div class="footer">
+            SERVER ID: KM-2026-X | STATUS: OFFLINE FOR UPDATE
         </div>
     </div>
 
     <script>
-        // 模拟系统加载过程
-        const progress = document.getElementById('progressBar');
-        const percentage = document.getElementById('percentage');
+        const progressBar = document.getElementById('progressBar');
+        const percentText = document.getElementById('percentText');
         const terminal = document.getElementById('terminal');
-        const loadingScreen = document.getElementById('loadingScreen');
-        const mainContent = document.getElementById('mainContent');
+        const timerElement = document.getElementById('timer');
+
+        // --- 配置区域 ---
+        const TOTAL_HOURS = 72;
+        const TOTAL_MS = TOTAL_HOURS * 60 * 60 * 1000;
         
-        const messages = [
-            "> 连接哀牢山数据库 v1.0.0...",
-            "> 验证用户权限...",
-            "> 加载小说内容...",
-            "> 初始化API接口...",
-            "> 启动安全协议...",
-            "> 准备用户界面...",
-            "> 加载世界观数据...",
-            "> 同步云南-哀牢山融合参数...",
-            "> 系统启动完成！",
-            "> 欢迎访问哀牢山系统 v1.0.0"
+        // 获取开始时间。
+        // 注意：为了演示效果，这里每次刷新页面都会重新开始72小时倒计时。
+        // 如果您希望它在刷新后继续计数，需要使用 localStorage 存储 startTime。
+        // 下面代码使用了 localStorage 逻辑，这样即使您关闭浏览器再打开，时间也是连续的。
+        let startTime = localStorage.getItem('serverUpdateStartTime');
+        
+        if (!startTime) {
+            startTime = Date.now();
+            localStorage.setItem('serverUpdateStartTime', startTime);
+        } else {
+            startTime = parseInt(startTime);
+        }
+
+        // 模拟日志库 - 包含一些看起来很专业的术语
+        const logMessages = [
+            { msg: "Initializing deep storage array...", type: "info" },
+            { msg: "Verifying checksums for sector 7G...", type: "process" },
+            { msg: "Compressing legacy database logs...", type: "process" },
+            { msg: "Optimizing neural network pathways...", type: "info" },
+            { msg: "Syncing with off-site backup node [JP-Tokyo]...", type: "success" },
+            { msg: "Clearing temporary cache files (45GB)...", type: "process" },
+            { msg: "Updating security protocols to v9.2...", type: "warning" },
+            { msg: "Re-indexing user permission tables...", type: "info" },
+            { msg: "Defragmenting virtual memory blocks...", type: "process" },
+            { msg: "Checking integrity of core system files...", type: "info" },
+            { msg: "Applying patch #2026.11.04-Beta...", type: "success" },
+            { msg: "Calibrating time-sync servers...", type: "info" },
+            { msg: "Warning: High latency detected in sector 4. Retrying...", type: "warning" },
+            { msg: "Migrating user session data...", type: "process" },
+            { msg: "Compiling static assets...", type: "process" },
+            { msg: "Running diagnostic suite A-12...", type: "info" },
+            { msg: "Cooling down CPU clusters...", type: "info" },
+            { msg: "Verifying encryption keys...", type: "success" },
+            { msg: "Updating DNS records...", type: "process" },
+            { msg: "Finalizing configuration changes...", type: "info" }
         ];
-        
-        let currentProgress = 0;
-        let messageIndex = 0;
-        let isLoadingComplete = false;
-        
-        function updateProgress() {
-            if (currentProgress < 100) {
-                // 每次增加随机进度值，确保最终达到100%
-                const increment = Math.min(Math.random() * 10, 100 - currentProgress);
-                currentProgress += increment;
+
+        function formatTime(ms) {
+            if (ms < 0) return "00:00:00";
+            const totalSeconds = Math.floor(ms / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            
+            // 如果超过24小时，显示 HH:MM:SS，否则也可以显示 Days
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function getCurrentTimeStr() {
+            const now = new Date();
+            return now.toLocaleTimeString('en-US', { hour12: false });
+        }
+
+        function addLog(text, type) {
+            const div = document.createElement('div');
+            div.className = 'log-line';
+            
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'log-time';
+            timeSpan.textContent = `[${getCurrentTimeStr()}]`;
+            
+            const msgSpan = document.createElement('span');
+            msgSpan.className = `log-msg ${type}`;
+            msgSpan.textContent = text;
+
+            div.appendChild(timeSpan);
+            div.appendChild(msgSpan);
+            
+            terminal.appendChild(div);
+            terminal.scrollTop = terminal.scrollHeight;
+
+            // 限制日志数量，防止内存溢出
+            if (terminal.children.length > 50) {
+                terminal.removeChild(terminal.firstChild);
+            }
+        }
+
+        let lastLogIndex = -1;
+
+        function updateLoop() {
+            const now = Date.now();
+            const elapsed = now - startTime;
+            
+            // 计算进度
+            let progress = (elapsed / TOTAL_MS) * 100;
+            
+            // 边界检查
+            if (progress >= 100) {
+                progress = 100;
+                timerElement.textContent = "00:00:00";
+                timerElement.style.color = "#00ff00";
+                progressBar.style.background = "#00ff00";
+                progressBar.style.boxShadow = "0 0 20px #00ff00";
                 
-                // 更新进度条和百分比
-                progress.style.width = `${currentProgress}%`;
-                percentage.textContent = `${Math.round(currentProgress)}%`;
-                
-                // 随机时机添加终端消息
-                if (messageIndex < messages.length && Math.random() > 0.7) {
-                    const line = document.createElement('div');
-                    line.className = 'terminal-line';
-                    line.textContent = messages[messageIndex];
-                    terminal.appendChild(line);
-                    terminal.scrollTop = terminal.scrollHeight;
-                    messageIndex++;
+                if (!document.getElementById('final-log')) {
+                    addLog("System update completed successfully. Rebooting...", "success");
+                    const finalLog = document.createElement('div');
+                    finalLog.id = 'final-log';
+                    finalLog.style.color = '#00ff00';
+                    finalLog.style.marginTop = '10px';
+                    finalLog.textContent = ">>> SYSTEM READY <<<";
+                    terminal.appendChild(finalLog);
                 }
-                
-                // 继续更新进度
-                setTimeout(updateProgress, 100 + Math.random() * 200);
             } else {
-                // 强制设置进度为100%
-                progress.style.width = '100%';
-                percentage.textContent = '100%';
+                const remaining = TOTAL_MS - elapsed;
+                timerElement.textContent = formatTime(remaining);
                 
-                // 加载完成后隐藏加载界面，显示主要内容
-                setTimeout(() => {
-                    const finalLine = document.createElement('div');
-                    finalLine.className = 'terminal-line';
-                    finalLine.textContent = '> 访问授权已建立 v1.0.0';
-                    terminal.appendChild(finalLine);
-                    
-                    const accessLine = document.createElement('div');
-                    accessLine.className = 'terminal-line';
-                    accessLine.textContent = '> 欢迎回来，探险者';
-                    terminal.appendChild(accessLine);
-                    terminal.scrollTop = terminal.scrollHeight;
-                    
-                    // 2秒后切换到主要内容
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                        mainContent.style.display = 'block';
-                        
-                        // 添加页面淡入效果
-                        mainContent.style.opacity = '0';
-                        mainContent.style.transition = 'opacity 1s ease-in-out';
-                        setTimeout(() => {
-                            mainContent.style.opacity = '1';
-                        }, 50);
-                    }, 2000);
-                }, 500);
+                // 随机生成日志，模拟漫长过程中的偶尔活动
+                // 概率设为非常低，模拟72小时内的稀疏活动
+                if (Math.random() < 0.005) { // 每次循环(约16ms)有0.5%几率输出日志，平均几秒一条
+                     // 为了避免连续输出，加一个简单的锁或间隔检查会更好，但随机性在这里足够模拟"静默"
+                     const randomLog = logMessages[Math.floor(Math.random() * logMessages.length)];
+                     addLog(randomLog.msg, randomLog.type);
+                }
             }
+
+            // 更新UI
+            progressBar.style.width = `${progress}%`;
+            percentText.textContent = progress.toFixed(4); // 显示多位小数以体现缓慢变化
+
+            requestAnimationFrame(updateLoop);
         }
+
+        // 初始化
+        addLog("Maintenance window started.", "info");
+        addLog(`Estimated duration: ${TOTAL_HOURS} hours.`, "warning");
         
-        // 启动加载动画
-        setTimeout(updateProgress, 500);
-        
-        // 世界观模态框功能
-        function openWorldviewModal() {
-            document.getElementById('worldviewModal').style.display = 'block';
-        }
-        
-        function closeWorldviewModal() {
-            document.getElementById('worldviewModal').style.display = 'none';
-        }
-        
-        // 点击模态框外部关闭
-        window.onclick = function(event) {
-            const modal = document.getElementById('worldviewModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-        
-        // 背景颜色更改功能
-        const colorOptions = document.querySelectorAll('.color-option');
-        const customColorPicker = document.getElementById('customColor');
-        const resetBtn = document.getElementById('resetBtn');
-        const body = document.body;
-        
-        // 默认背景颜色
-        const defaultGradient = 'linear-gradient(135deg, #0a2a0a 0%, #1a4a1a 100%)';
-        
-        // 为每个颜色选项添加点击事件
-        colorOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const color = this.getAttribute('data-color');
-                body.style.background = `linear-gradient(135deg, ${color} 0%, #1a4a1a 100%)`;
-                
-                // 移除其他选项的active类
-                colorOptions.forEach(opt => opt.classList.remove('active'));
-                
-                // 为当前选项添加active类
-                this.classList.add('active');
-                
-                // 更新自定义颜色选择器的值
-                customColorPicker.value = color;
-            });
-        });
-        
-        // 自定义颜色选择器事件
-        customColorPicker.addEventListener('input', function() {
-            const color = this.value;
-            body.style.background = `linear-gradient(135deg, ${color} 0%, #1a4a1a 100%)`;
-            
-            // 移除所有选项的active类
-            colorOptions.forEach(opt => opt.classList.remove('active'));
-        });
-        
-        // 重置按钮事件
-        resetBtn.addEventListener('click', function() {
-            body.style.background = defaultGradient;
-            
-            // 移除所有选项的active类
-            colorOptions.forEach(opt => opt.classList.remove('active'));
-            
-            // 重置自定义颜色选择器
-            customColorPicker.value = '#0a2a0a';
-        });
-        
-        // 页面加载完成后自动选择第一个颜色选项
-        document.addEventListener('DOMContentLoaded', function() {
-            if (colorOptions.length > 0) {
-                colorOptions[0].classList.add('active');
-            }
-        });
+        // 启动循环
+        requestAnimationFrame(updateLoop);
+
     </script>
 </body>
 </html>
